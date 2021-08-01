@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
 
 
 // Add Posts
-router.post('/', async(req, res) => {
+router.post('/', async (req, res) => {
   const posts = await loadPostsCollection();
   await posts.insertOne({
     text: req.body.text,
@@ -25,9 +25,11 @@ router.post('/', async(req, res) => {
 
 
 // Delete Posts 
-router.delete('/:id', async(req, res) => {
+router.delete('/:id', async (req, res) => {
   const posts = await loadPostsCollection();
-  await posts.deleteOne({_id: new mongodb.ObjectID(req.params.id)});
+  await posts.deleteOne({
+    _id: new mongodb.ObjectID(req.params.id)
+  });
   res.status(200).send();
 })
 
